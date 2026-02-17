@@ -4,7 +4,7 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/kode   # changed from mysql → localhost
-    username: boot
+    username: root
     password: rajib@123
     driver-class-name: com.mysql.cj.jdbc.Driver
 
