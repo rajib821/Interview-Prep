@@ -3,7 +3,7 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/kodewala   # changed from mysql → localhost
+    url: jdbc:mysql://localhost:3306/kode   # changed from mysql → localhost
     username: boot
     password: rajib@123
     driver-class-name: com.mysql.cj.jdbc.Driver
