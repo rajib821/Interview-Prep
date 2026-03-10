@@ -9,14 +9,14 @@ spring:
         - id: order-service
           uri: lb://feign-order-service
           predicates:
-            - Path=/api/order/**
+            - Path=/api/order/*
           filters:
             - StripPrefix=1
 
         - id: payment-service
           uri: lb://feign-payment-service
           predicates:
-            - Path=/api/payment/**
+            - Path=/api/payment/*
           filters:
             - StripPrefix=1
 
