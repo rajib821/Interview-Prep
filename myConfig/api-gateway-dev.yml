@@ -2,18 +2,8 @@ spring:
   application:
     name: api-gateway
 
-  data:
-    redis:
-      host: localhost
-      port: 6379
-
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-
       routes:
 
         - id: order-service
@@ -22,12 +12,6 @@ spring:
             - Path=/api/order/**
           filters:
             - StripPrefix=1
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 5
-                redis-rate-limiter.requestedTokens: 1
-                key-resolver: "#{@ipKeyResolver}"
 
         - id: payment-service
           uri: lb://feign-payment-service
@@ -40,8 +24,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
 
 server:
   port: 8085
