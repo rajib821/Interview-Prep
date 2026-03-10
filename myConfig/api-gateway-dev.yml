@@ -17,30 +17,24 @@ spring:
       routes:
 
         - id: order-service
-          uri: lb://feign-order-service
+          uri: lb://feign-service
           predicates:
             - Path=/api/order/**
           filters:
             - StripPrefix=1
-
-        - id: payment-service
-          uri: lb://feign-payment-service-1
-          predicates:
-            - Path=/api/payment/**
-          filters:
-            - StripPrefix=1
-
-        - id: order-rate-limit
-          uri: lb://feign-order-service
-          predicates:
-            - Path=/api/order/**
-          filters:
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 5
                 redis-rate-limiter.requestedTokens: 1
                 key-resolver: "#{@ipKeyResolver}"
+
+        - id: payment-service
+          uri: lb://feign-payment-service
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
