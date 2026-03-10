@@ -17,7 +17,7 @@ spring:
       routes:
 
         - id: order-service
-          uri: lb://feign-service
+          uri: lb://feign-order-service
           predicates:
             - Path=/api/order/**
           filters:
